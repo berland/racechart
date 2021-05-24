@@ -1,0 +1,4 @@
+Run::
+
+  python racechart.py > table.tex
+  pdflatex racechart.tex
