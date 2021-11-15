@@ -1,5 +1,6 @@
-import pandas as pd
 import time
+
+import pandas as pd
 
 DISTANCES = {
     "1 km": 1000,
