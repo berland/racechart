@@ -14,7 +14,7 @@ DISTANCES = {
 }
 
 
-def racechart(startsec=4 * 60, endsec=5 * 60):
+def racechart(startsec: int = 6 * 60, endsec: int = 7 * 60) -> pd.DataFrame:
     dframe = pd.DataFrame()
     dframe["seconds_pr_km"] = range(startsec, endsec + 1)
     for distance_name, length in DISTANCES.items():
@@ -26,7 +26,7 @@ def racechart(startsec=4 * 60, endsec=5 * 60):
     return dframe.drop("seconds_pr_km", axis=1)
 
 
-def prettyprintseconds(seconds):
+def prettyprintseconds(seconds: float) -> str:
     seconds = round(seconds)
     if seconds < 60 * 60:
         return time.strftime("%-M:%S", time.gmtime(seconds))
@@ -37,4 +37,8 @@ assert prettyprintseconds(0) == "0:00"
 assert prettyprintseconds(60) == "1:00"
 assert prettyprintseconds(61) == "1:01"
 
-print(racechart().to_latex(column_format="c" * (len(DISTANCES) + 1), index=False))
+print(
+    racechart().to_latex(
+        column_format="c" * (len(DISTANCES) + 1), index=False, float_format="%.2f"
+    )
+)
